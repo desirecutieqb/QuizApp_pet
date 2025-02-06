@@ -32,7 +32,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "components/ui/button.tsx", "components/Header.tsx"  ],
   "exclude": [
     "node_modules"
   ]
