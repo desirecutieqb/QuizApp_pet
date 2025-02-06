@@ -1,7 +1,7 @@
+'use server';
 
 import {prisma} from "@/lib/prisma"
-import { currentUser } from "@clerk/nextjs/dist/types/server"
-
+import { currentUser } from "@clerk/nextjs/server";
 export const fetchUsers = async () => {
     try{
         const clerkUser = await currentUser()
