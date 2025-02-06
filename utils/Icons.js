@@ -2,7 +2,7 @@
 // https://undraw.co/illustrations
 
 
-export const home = <i class="fa-light fa-house"></i>
+export const home = <i className="fa-light fa-house"></i>
 export const ranking = <i className="fa-light fa-ranking-star"></i>;
 export const check = <i className="fa-solid fa-check"></i>;
 export const logout = <i className="fa-solid fa-right-from-bracket"></i>;
