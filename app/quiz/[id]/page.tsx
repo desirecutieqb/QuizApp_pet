@@ -6,9 +6,8 @@ import { useParams } from "next/navigation";
 
 export default function QuizPage() {
   const router = useRouter();
-  const params = useParams(); // ✅ Poprawka: używamy useParams()
-  const quizId = params?.id as string; // ✅ Konwertujemy ID na stringa
-
+  const params = useParams(); 
+  const quizId = params?.id as string; 
   const quiz = quizzes.find((q) => q.id === quizId);
 
   if (!quiz) return notFound();
