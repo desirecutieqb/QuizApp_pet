@@ -21,7 +21,7 @@ export const quizzes: IQuiz[] = [
   {
     id: "1",
     title: "JavaScript Basics",
-    totalQuestions: 10,
+    totalQuestions: 5,
     image: "/images/quiz1.jpg",
     questions: [
       {
@@ -79,7 +79,7 @@ export const quizzes: IQuiz[] = [
   {
     id: "2",
     title: "Advanced JavaScript",
-    totalQuestions: 10,
+    totalQuestions: 5,
     image: "/images/quiz2.jpg",
     questions: [
       {
