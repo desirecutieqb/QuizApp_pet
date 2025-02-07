@@ -9,6 +9,13 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
-const eslintConfig = [...compat.extends("next/core-web-vitals")];
+let eslintConfig = [...compat.extends("next/core-web-vitals")];
+
+eslintConfig = eslintConfig.map((conf) => {
+  if (conf.parser && typeof conf.parser.parse === "function") {
+    delete conf.parser.parse;
+  }
+  return conf;
+});
 
 export default eslintConfig;
