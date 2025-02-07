@@ -8,17 +8,18 @@ interface QuizCardProps {
 }
 
 const QuizCard: React.FC<QuizCardProps> = ({ quiz }) => {
+  // Pobranie obrazka z public/images/
+  const imagePath = `/images/quiz${quiz.id}.jpg`;
+
   return (
     <div className="bg-white shadow-lg rounded-xl overflow-hidden transition-all transform hover:scale-105 hover:shadow-2xl">
-      {quiz.image && (
-        <Image
-          src={quiz.image}
-          alt={quiz.title}
-          width={300}
-          height={200}
-          className="w-full h-48 object-cover"
-        />
-      )}
+      <Image
+        src={imagePath} // Ustawienie ścieżki obrazu
+        alt={quiz.title}
+        width={300}
+        height={200}
+        className="w-full h-48 object-cover"
+      />
       <div className="p-6">
         <h2 className="text-2xl font-bold text-gray-800">{quiz.title}</h2>
         <p className="text-gray-500 mt-2">
