@@ -1,19 +1,26 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useRouter, useParams } from "next/navigation";
 import { quizzes } from "@/data";
-import { notFound, useRouter } from "next/navigation";
-import { useParams } from "next/navigation";
 
 export default function QuizPage() {
   const router = useRouter();
-  const params = useParams(); 
-  const quizId = params?.id as string; 
+  const params = useParams();
+  const quizId = params?.id as string;
   const quiz = quizzes.find((q) => q.id === quizId);
-
-  if (!quiz) return notFound();
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
+
+  useEffect(() => {
+    if (!quiz) {
+      router.replace("/404");
+    }
+  }, [quiz, router]);
+
+  if (!quiz) {
+    return null; 
+  }
 
   const handleAnswerClick = (isCorrect: boolean) => {
     if (isCorrect) {
@@ -23,7 +30,9 @@ export default function QuizPage() {
     if (currentQuestionIndex < quiz.questions.length - 1) {
       setCurrentQuestionIndex((prev) => prev + 1);
     } else {
-      router.push(`/quiz/results?score=${score + (isCorrect ? 1 : 0)}&total=${quiz.questions.length}`);
+      router.push(
+        `/quiz/results?score=${score + (isCorrect ? 1 : 0)}&total=${quiz.questions.length}`
+      );
     }
   };
 
@@ -33,17 +42,14 @@ export default function QuizPage() {
         <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-6">
           {quiz.title}
         </h1>
-
         <div className="bg-blue-100 text-blue-800 px-4 py-2 rounded-md text-center font-semibold mb-4">
           Question {currentQuestionIndex + 1} / {quiz.questions.length}
         </div>
-
         <div className="mb-6 text-center">
           <h2 className="text-xl font-bold text-gray-700">
             {quiz.questions[currentQuestionIndex].question}
           </h2>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {quiz.questions[currentQuestionIndex].answers.map((answer, idx) => (
             <button
